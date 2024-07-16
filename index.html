@@ -27,7 +27,7 @@
 <body>
     <div class="container mt-3">
         <h2 class="text-danger" style="font-size: large;">Note: This webpage is for those who travel under any circumstances or obstacles for 'attendance' by public transportation only, such as buses, auto rickshaws, and cabs.</h2>
-        <h1 class="inset text-center text-dark-purple my-2">Hi, College Traveler's</h1>
+        <h1 class="inset text-center text-dark-purple my-2" style="margin-left: 270px; margin-right: 260px; " >Hi, College Traveler's</h1>
         <div class="bg-dark text-light p-3 my-2">
             <h2 class="text-light">"Hi, My Fellow College Travelers I Hope You Guys Doing Good😌."</h2>    
             <p class="text-blanchedalmond">So, Coming to webpage <span class="font-italic">“En route to college, I calculated the currency of learning—the tangible fares and the intangible dividends.”</span></p>
@@ -37,6 +37,7 @@
         <div class="form-group">
             <label for="monthsInput" class="font-weight-bold text-dark">Months:</label>
             <input type="text" class="form-control" id="monthsInput" name="monthsInput" value="">
+            <button class="btn btn-primary mt-2" onclick="calculateWorkingDays()">Submit</button>
         </div>
         
         <p id="result" class="text-indigo font-weight-bold"></p>
@@ -44,11 +45,13 @@
         <div class="form-group">
             <label for="ab" class="font-weight-bold text-dark">Absences:</label>
             <input type="text" class="form-control" id="ab" name="ab">
+            <button class="btn btn-primary mt-2" onclick="subtractNumbers()">Submit</button>
         </div>
         <p id="result1" class="text-indigo font-weight-bold"></p>
         <div class="form-group">
             <label for="pr" class="font-weight-bold text-dark">Daily-Price:</label>
             <input type="text" class="form-control" id="pr" name="pr">
+            <button class="btn btn-primary mt-2" onclick="price()">Submit</button>
         </div>
         <div class="toast toast-middle" id="priceToast" data-delay="5000">
             <div class="toast-header">
@@ -59,12 +62,6 @@
         </div>
     </div>
     <script>
-        document.getElementById('monthsInput').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                calculateWorkingDays();
-            }
-        });
-
         function calculateWorkingDays() {
             const months = parseInt(document.getElementById('monthsInput').value);
             const daysInMonth = 30.4;
@@ -83,12 +80,6 @@
             return Math.floor(Math.random() * (8 - 6 + 1)) + 6;
         }
 
-        document.getElementById('ab').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                subtractNumbers();
-            }
-        });
-
         function subtractNumbers() {
             const absences = parseInt(document.getElementById('ab').value);
             const remainingDays = parseInt(document.getElementById('result').textContent.split(': ')[1]);
@@ -96,12 +87,6 @@
             const result1 = document.getElementById('result1');
             result1.textContent = `Final working days after absences: ${finalDays}`;
         }
-
-        document.getElementById('pr').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                price();
-            }
-        });
 
         function price() {
             const price = parseInt(document.getElementById('pr').value);
