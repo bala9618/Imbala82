@@ -4,23 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CollegeTravelMoney</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-       body { background-color : rgb(75, 210, 255); }
-       h1.inset { border: inset hsl(240, 38%, 41%); margin-left: 325px; margin-right: 325px; margin-top: 4px; margin-bottom: 4px; border-radius: 8px; padding: 2px; }
+        body { background-color: rgb(75, 210, 255); }
+        .inset { border: inset hsl(240, 38%, 41%); border-radius: 8px; padding: 2px; }
+        .toast-middle {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1050;
+            background-color: #343a40;
+            color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .toast-header {
+            background-color: #495057;
+            color: #f8f9fa;
+        }
     </style>
 </head>
 <body>
-    <h2 style="background-color: brown; text-align: center; margin-left: 40px; margin-right: 40px; padding: 4px; color: antiquewhite;">Note: This webpage is for those who travel under any circumstances or obstacles for 'attendance' by public transportation only, such as buses, auto rickshaws, and cabs.</h2>
-    <h1 class="inset" style="color: rgb(90, 43, 90); text-align: center;">Hi, College Traveler's</h1>
-    <div style="background-color:black;color:white;padding:10px;margin-top: 8px;margin-bottom: 8px;">
-        <h2 style="font-size:x-large; color: antiquewhite;">"Hi, My Fellow College Travelers I Hope You Guys Doing Good😌."</h2>    
-        <p style="color: blanchedalmond;">So, Coming to webpage <span style="font-size: large; font-style: italic;">“En route to college, I calculated the currency of learning—the tangible fares and the intangible dividends.”</span></p>
-        <p style="color: blanchedalmond; margin-top: 10px;">You can also think like <span style="font-size: large; font-style: italic;">'How much money I'm spending for my "College Attendance🫡" by traveling to college or What's my cost of attending college through travel?'</span></p>
+    <div class="container mt-3">
+        <h2 class="text-danger" style="font-size: large;" >Note: This webpage is for those who travel under any circumstances or obstacles for 'attendance' by public transportation only, such as buses, auto rickshaws, and cabs.</h2>
+        <h1 class="inset text-center text-dark-purple my-2" style="margin-left: 270px; margin-right: 260px; " >Hi, College Traveler's</h1>
+        <div class="bg-dark text-light p-3 my-2">
+            <h2 class="text-light">"Hi, My Fellow College Travelers I Hope You Guys Doing Good😌."</h2>    
+            <p class="text-blanchedalmond">So, Coming to webpage <span class="font-italic">“En route to college, I calculated the currency of learning—the tangible fares and the intangible dividends.”</span></p>
+            <p class="text-blanchedalmond mt-2">You can also think like <span class="font-italic">'How much money I'm spending for my "College Attendance🫡" by traveling to college or What's my cost of attending college through travel?'</span></p>
+        </div>
+        <h5 class="text-danger">Note: Total working days (considering on an average public holidays days are 6 to 8 days in a Month)</h5>
+        <div class="form-group">
+            <label for="monthsInput" class="font-weight-bold text-dark">Months:</label>
+            <input type="text" class="form-control" id="monthsInput" name="monthsInput" value="">
+        </div>
+        
+        <p id="result" class="text-indigo font-weight-bold"></p>
+        <h5 class="text-danger">Note: Enter the absence that you have taken for college and also consider the months you entered above. For example, if you took 4 days off in a month, which are working days, then enter '4' in the absence field.</h5>
+        <div class="form-group">
+            <label for="ab" class="font-weight-bold text-dark">Absences:</label>
+            <input type="text" class="form-control" id="ab" name="ab">
+        </div>
+        <p id="result1" class="text-indigo font-weight-bold"></p>
+        <div class="form-group">
+            <label for="pr" class="font-weight-bold text-dark">Daily-Price:</label>
+            <input type="text" class="form-control" id="pr" name="pr">
+        </div>
+        <div class="toast toast-middle" id="priceToast" data-delay="5000">
+            <div class="toast-header">
+                <strong class="mr-auto">Total Price</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">×</button>
+            </div>
+            <div class="toast-body" id="pr1"></div>
+        </div>
     </div>
-    <label for="Months" style="margin-left: 25px;"><span style="font-size: large; color: rgb(48, 40, 38);">Months:</span></label><br>
-    <input type="text" id="monthsInput" name="monthsInput" value="" style="margin-left: 25px;"><br>
-    <h5 style="color: crimson; margin-left: 10px;">Note: Total working days (considering on an average public holidays days are 6 to 8 days in a Month)</h5>
-    <p id="result" style="margin-left: 18px; color: indigo; font-size: larger;"></p>
     <script>
         document.getElementById('monthsInput').addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
@@ -46,12 +83,7 @@
         function getRandomReduction() {
             return Math.floor(Math.random() * (8 - 6 + 1)) + 6;
         }
-    </script>
-    <h5 style="color: crimson; margin-left: 10px;">Note: Enter the absence that you have taken for college and also consider the months you entered above. For example, if you took 4 days off in a month, which are working days, then enter '4' in the absence field.</h5>
-    <label for="absence" style="margin-left: 25px;"><span style="font-size: large; color: rgb(48, 40, 38);">Absences:</span></label><br>
-    <input type="text" id="ab" name="ab" value="" style="margin-left: 25px;"><br>
-    <p id="result1" style="margin-left: 18px; color: indigo; font-size: larger;"></p>
-    <script>
+
         document.getElementById('ab').addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 subtractNumbers();
@@ -65,11 +97,7 @@
             const result1 = document.getElementById('result1');
             result1.textContent = `Final working days after absences: ${finalDays}`;
         }
-    </script>
-    <label for="price" style="margin-left: 25px;"><span style="font-size: large; color: rgb(48, 40, 38);">Daily-Price:</span></label><br>
-    <input type="text" id="pr" name="pr" value="" style="margin-left: 25px;"><br>
-    <p id="pr1" style="margin-left: 18px; color: indigo; font-size: larger;"></p>
-    <script>
+
         document.getElementById('pr').addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 price();
@@ -82,7 +110,10 @@
             const totalprice = price * finalDays_workingdays;
             const Tprice = document.getElementById('pr1');
             Tprice.textContent = `What's my cost of attending college through travel?' INR:${totalprice}`;
+            $('#priceToast').toast('show');
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
